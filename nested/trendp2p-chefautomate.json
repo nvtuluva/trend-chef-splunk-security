@@ -218,7 +218,7 @@
                     "fileUris": [
                         "[parameters('computeSettings').chefAutoScriptUrl2]"
                     ],
-                    "commandToExecute": "[concat( 'sh chefupgrade_setup.sh',' ',parameters('computeSettings').adminUsername,' ',parameters('computeSettings').adminpassword,' ',parameters('computeSettings').orguser,' ',parameters('computeSettings').firstname,' ',parameters('computeSettings').lastname,' ',parameters('computeSettings').mailid,' ',variables('publicIPDomainNameLabelOrchServer'))]"
+                    "commandToExecute": "[concat( 'sh chefupgrade_setup.sh',' ',parameters('computeSettings').adminUsername,' ',parameters('computeSettings').adminpassword,' ',parameters('computeSettings').orguser,' ',parameters('computeSettings').firstname,' ',parameters('computeSettings').lastname,' ',parameters('computeSettings').mailid)]"
                 }
             },
             "dependsOn": [
