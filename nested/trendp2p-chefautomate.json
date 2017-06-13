@@ -107,8 +107,8 @@
             "apiVersion": "[parameters('networkSettings').networkApiVersion]",
             "location": "[parameters('networkSettings').location]",
             "dependsOn": [
-                 "[concat('Microsoft.Compute/virtualMachines/', parameters('networkSettings').chefAutoPip)]",
-                  "[concat('Microsoft.Compute/virtualMachines/', parameters('networkSettings').chefautoNsg)]"
+                 "[concat('Microsoft.Network/publicIpAddresses/', parameters('networkSettings').chefAutoPip)]",
+                  "[concat('Microsoft.Network/networkSecurityGroups/', parameters('networkSettings').chefautoNsg)]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -136,7 +136,7 @@
             "apiVersion": "[parameters('computeSettings').computeApiVersion]",
             "location": "[parameters('computeSettings').location]",
             "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/', parameters('computeSettings').chefAutoNic)]"
+                "[concat('Microsoft.Network/networkInterfaces/', parameters('computeSettings').chefAutoNic)]"
             ],
             "plan": {
                 "name": "[parameters('computeSettings').imageSKU]",
