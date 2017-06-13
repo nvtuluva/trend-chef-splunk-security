@@ -49,7 +49,7 @@
                     {
                         "name": "https",
                         "properties": {
-                            "priority": 1020,
+                            "priority": 1010,
                             "sourceAddressPrefix": "*",
                             "protocol": "TCP",
                             "destinationPortRange": "443",
