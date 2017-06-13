@@ -10,9 +10,17 @@
         },
         "subnet2Ref":{
             "type": "string"
+        },
+        "publicIPDomainNameLabelOrchServer": {
+            "type": "string",
+            "defaultValue": ""
         }
     },
-    "variables": {},
+    "variables": {
+        "pipID":"[resourceId('Microsoft.Network/publicIPAddresses',parameters('networkSettings').chefAutoPip)]",
+        "publicIPDomainNameLabelOrchServer": "[concat('http://',parameters('publicIPDomainNameLabelOrchServer'),'.',parameters('computeSettings').location,'.cloudapp.azure.com:33001/key')]"
+
+    },
     "resources": [
         {
             "name": "[parameters('networkSettings').chefAutoPip]",
@@ -189,7 +197,7 @@
                     "fileUris": [
                         "[parameters('computeSettings').chefAutoScriptUrl1]"
                     ],
-                    "commandToExecute": "[concat(parameters('computeSettings').rubyPath, ' ./automate_setup.rb --fqdn \"', reference(resourceId('Microsoft.Network/publicIPAddresses',parameters('networkSettings').chefAutoPip)).dnsSettings.fqdn, '\" --license \"', parameters('computeSettings').automateLicenseUri, '\"')]"
+                    "commandToExecute": "[concat(parameters('computeSettings').rubyPath, ' ./automate_setup.rb --fqdn \"', reference(variables('pipId')).dnsSettings.fqdn, '\" --license \"', parameters('computeSettings').automateLicenseUri, '\"')]"
                 }
             },
             "dependsOn": [
@@ -210,7 +218,7 @@
                     "fileUris": [
                         "[parameters('computeSettings').chefAutoScriptUrl2]"
                     ],
-                    "commandToExecute": "[concat( 'sh chefupgrade_setup.sh',' ',parameters('computeSettings').adminUsername,' ',parameters('computeSettings').adminpassword,' ',parameters('computeSettings').orguser,' ',parameters('computeSettings').firstname,' ',parameters('computeSettings').lastname,' ',parameters('computeSettings').mailid)]"
+                    "commandToExecute": "[concat( 'sh chefupgrade_setup.sh',' ',parameters('computeSettings').adminUsername,' ',parameters('computeSettings').adminpassword,' ',parameters('computeSettings').orguser,' ',parameters('computeSettings').firstname,' ',parameters('computeSettings').lastname,' ',parameters('computeSettings').mailid,' ',variables('publicIPDomainNameLabelOrchServer'))]"
                 }
             },
             "dependsOn": [
