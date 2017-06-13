@@ -9,7 +9,10 @@ mkdir /home/chefpemfiles
 chef-marketplace-ctl upgrade -y
 sudo chef-server-ctl reconfigure
 automate-ctl create-user default $1 --password $2
-chmod 755 /root/chefpemfiles
+chmod 755 /home/chefpemfiles
+##Assigning variable to construct and update key and key-value
+validatorkey=`cat /tmp/validatorkey.txt`
+userkey=`cat /tmp/userkey.txt`
 chef-server-ctl user-create $1 $4 $5 $6 $2 > /home/chefpemfiles/$1.pem
 chef-server-ctl org-create $3 "sysg organisation" -a $1 > /home/chefpemfiles/$3-validator.pem
 #Upload key value.
