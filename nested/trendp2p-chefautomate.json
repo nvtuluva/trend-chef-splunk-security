@@ -210,6 +210,10 @@
             "name": "[concat(parameters('computeSettings').chefAutoVmName,'/chefupgrade_setup')]",
             "apiVersion": "[parameters('computeSettings').computeApiVersion]",
             "location": "[parameters('computeSettings').location]",
+            "dependsOn": [
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('computeSettings').chefAutoVmName)]",
+                "[concat('Microsoft.Compute/virtualMachines/', parameters('computeSettings').chefAutoVmName,'/extensions/automate_setup')]"
+            ],
             "properties": {
                 "publisher": "Microsoft.OSTCExtensions",
                 "type": "CustomScriptForLinux",
