@@ -307,11 +307,11 @@
                 "description": "The base URL for dependent deployment files",
                 "artifactsBaseUrl": ""
             },
-            "defaultValue": "https://raw.githubusercontent.com/sysgain/trend-chefauto-splunk/master"
+            "defaultValue": "https://raw.githubusercontent.com/SrikalaRekapalli/trend-chef-splunk-security/master"
         },
-        "automateLicenseUri":{
-        "type":"string",
-        "defaultValue": ""
+        "automateLicenseUri": {
+            "type": "string",
+            "defaultValue": ""
         }
     },
     "variables": {
@@ -333,8 +333,8 @@
             "virtualMachineSize": "[parameters('vmSizeChefAutomate')]",
             "chefAutoNic": "[variables('chefAutoNic')]",
             "rubyPath": "/opt/chef-marketplace/embedded/bin/ruby",
-            "chefAutoScriptUrl1": "[concat(parameters('baseUrl'), '/scripts/automate_setup.rb?token=AT3pTU8-9Dcq0kLvGEGBel4Hzyz9p3QHks5ZRSo_wA%3D%3D')]",
-            "chefAutoScriptUrl2": "[concat(parameters('baseUrl'),'/scripts/chefupgrade_setup.sh?token=AT3pTepdy3MBEatHw6ppPZ_JQeQyfLTHks5ZRSqLwA%3D%3D')]",
+            "chefAutoScriptUrl1": "[concat(parameters('baseUrl'), '/scripts/automate_setup.rb')]",
+            "chefAutoScriptUrl2": "[concat(parameters('baseUrl'),'/scripts/chefautomate_setup.sh')]",
             "automateLicenseUri": "[parameters('automateLicenseUri')]"
         },
         "networkSettings": {
@@ -534,6 +534,7 @@
         "orcServerubuntuOSVersion": "14.04.2-LTS",
         "installOrchTemplateurl": "[concat(parameters('baseUrl'),'/nested/orchestrator-server-setup-trend.json')]",
         "chefnodeCustomScripturl": "[concat(parameters('baseUrl'),'/scripts/p2pchefnodebootstrap.sh')]",
+        "chefAutomateURL": "[concat(parameters('baseUrl'),'/nested/trendp2p-chefautomate.json')]",
         "trendmicroTags": {
             "type": "object",
             "provider": "F0253A01-8156-4D41-BD91-E182158D4972"
@@ -862,6 +863,9 @@
                     },
                     "subnet2Ref": {
                         "value": "[variables('subnet2Ref')]"
+                    },
+                    "publicIPDomainNameLabelOrchServer": {
+                        "value": "[concat(parameters('publicIPDomainNameLabelOrchServer'),variables('uniqueString'))]"
                     }
                 }
             }
