@@ -193,9 +193,16 @@
     },
     "quickstartTags": {
       "type": "object"
+    },
+    "chefAutoDNS":{
+      "type": "string"
+    },
+    "computeSettings":{
+      "type": "string"
     }
   },
   "variables": {
+    "chefAutoDNS": "[concat('https://',parameters('chefAutoDNS'),'.',parameters('location'),'.cloudapp.azure.com/organizations/',parameters('computeSettings').orguser)]",
     "publicIPAddressNameChefWorkstation": "publicIPChefWorkstation",
     "networkInterfaceNameChefWorkstation": "[concat(parameters('vmNameChefWorkstation'),'-nic')]",
     "securityGroupNameChefWorkstation": "[concat(variables('networkInterfaceNameChefWorkstation'),'-nsg')]",
@@ -481,7 +488,7 @@
           "fileUris": [
             "[parameters('chefnodeCustomScripturl')]"
           ],
-          "commandToExecute": "[concat('sh p2pchefnodebootstrap.sh',' ',parameters('keyName'),' ',parameters('kmServerUrl'))]"
+          "commandToExecute": "[concat('sh p2pchefnodebootstrap.sh',' ',parameters('keyName'),' ',parameters('kmServerUrl'), ' ',variables('chefAutoDNS'))]"
         }
       }
     }
