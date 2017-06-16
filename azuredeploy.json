@@ -1236,6 +1236,9 @@
                     },
                     "quickstartTags": {
                         "value": "[variables('quickstartTags')]"
+                    },
+                    "chefAutoDNS":{
+                   "value": "[variables('networkSettings').chefAutoDns]"
                     }
                 }
             }
