@@ -307,7 +307,7 @@
                 "description": "The base URL for dependent deployment files",
                 "artifactsBaseUrl": ""
             },
-            "defaultValue": "https://raw.githubusercontent.com/SrikalaRekapalli/trend-chef-splunk-security/master"
+            "defaultValue": "https://raw.githubusercontent.com/sysgain/trend-chef-splunk-security/master"
         },
         "automateLicenseUri": {
             "type": "string",
