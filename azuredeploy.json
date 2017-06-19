@@ -1248,6 +1248,30 @@
         }
     ],
     "outputs": {
+        "TrendAdminUserName":{
+            "type": "string",
+            "value": "[parameters('vmAdminNameTrendDSM')]"
+        },
+        "TrendAdminPassword":{
+            "type": "string",
+            "value": "[parameters('vmAdminPasswordTrendDSM')]"
+        },
+        "splunkAdminUserName":{
+            "type": "string",
+            "value": "admin"
+        },
+        "splunkAdminPassword":{
+            "type": "string",
+            "value":"[parameters('splunkAdminPassword')]"
+        },
+        "chefAutomateAdminUserName":{
+            "type": "string",
+            "value": "[parameters('vmAdminUsernameChefAutomate')]"
+        },
+        "chefAutomateAdminPassword":{
+            "type": "string",
+            "value": "[parameters('vmAdminPasswordChefAutomate')]"
+        },
         "TrendMicro DSM URI": {
             "type": "string",
             "value": "[reference('trendmicrodsm').outputs.trendmicrodsmUri.value]"
